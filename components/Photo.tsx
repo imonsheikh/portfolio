@@ -1,13 +1,14 @@
 "use client";
 
 import React from "react";
-import { motion } from "motion/react";
+import { motion, Variants } from "framer-motion";
 import Image from "next/image";
 import hero from "@/images/hero.jpg";
 
 const EnhancedPhoto = () => {
   const circleColors = ["#00ff99"];
 
+  // Variants with correct typing
   const circleVariants: Variants = {
     initial: {
       strokeDasharray: "24 10 0 0",
@@ -15,7 +16,11 @@ const EnhancedPhoto = () => {
       opacity: 0,
     },
     animate: (index: number) => ({
-      strokeDasharray: ["15 120 25 25", "16 25 92 72", "4 250 22 22"],
+      strokeDasharray: [
+        "15 120 25 25",
+        "16 25 92 72",
+        "4 250 22 22",
+      ],
       rotate: [120, 360],
       opacity: 1,
       transition: {

@@ -13,7 +13,7 @@ const Container = ({ children, className }: Props) => {
       initial={{ opacity: 0 }}
       animate={{
         opacity: 1,
-        transition: { delay: 1, duration: 0.4, ease: "easeIn" },
+        transition: { delay: 0, duration: 0.4, ease: "easeIn" },
       }}
       className={cn("max-w-6xl mx-auto px-4", className)}
     >

@@ -1,14 +1,18 @@
 import Container from "@/components/Container";
 import HomeDescription from "@/components/HomeDescription";
+import PageTransition from "@/components/PageTransition";
 import Photo from "@/components/Photo";
 import SocialLinks from "@/components/SocialLinks";
+import StairTransition from "@/components/StairTransition";
 import Statistics from "@/components/Statistics";
 import { Download } from "lucide-react";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <Container className="py-10 grid grid-cols-1 md:grid-cols-2 gap-10">
+    <PageTransition> 
+              <StairTransition/>
+      <Container className="py-10 grid grid-cols-1 md:grid-cols-2 gap-10">
       <div className="flex flex-col items-center md:items-start gap-5 md:gap-7 text-center md:text-start">
         <div>
           <h3 className="font-semibold text-white/70 tracking-wider mb-1">
@@ -38,5 +42,6 @@ export default function Home() {
       </div>
       <Photo/>
     </Container>
+    </PageTransition>
   );
 }

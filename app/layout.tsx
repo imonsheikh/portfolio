@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-// import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
-import StairTransition from "@/components/StairTransition";
 import PageTransition from "@/components/PageTransition";
 import { Toaster } from 'react-hot-toast';
 
@@ -21,7 +19,6 @@ export default function RootLayout({
     <html lang="en">
       <body> 
         <Header/> 
-        <StairTransition/>
         <PageTransition>
           {children}
         </PageTransition> 

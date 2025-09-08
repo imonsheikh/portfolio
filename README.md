@@ -79,7 +79,7 @@ To configure the contact form, follow these steps:
 
 ## Live Demo
 
-Check out the live portfolio: https://portfolio-new-seven-opal.vercel.app/
+Check out the live portfolio: https://imon-portfolio.vercel.app/
 
 ## Learn More
 
@@ -92,4 +92,4 @@ To learn more about the technologies used in this project:
 - [https://swiperjs.com]Swiper Documentation
 - [https://www.radix-ui.com]Radix UI Documentation
 - [https://www.npmjs.com/package/react-countup]React-CountUp Documentation
-- [https://getform.io/docs]Getform.io Documentation
+- [https://getform.io/docs]Getform.io Documentation 

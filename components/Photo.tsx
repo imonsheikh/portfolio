@@ -3,7 +3,7 @@
 import React from "react";
 import { motion, Variants } from "framer-motion";
 import Image from "next/image";
-import hero from "@/images/hero.jpg";
+import hero from "@/images/hero2.jpeg";
 
 const EnhancedPhoto = () => {
   const circleColors = ["#00ff99"];
@@ -61,7 +61,7 @@ const EnhancedPhoto = () => {
           }}
           className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10"
         >
-          <div className="w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] mix-blend-lighten overflow-hidden rounded-full">
+          <div className="w-[250px] h-[250px] lg:w-[400px] lg:h-[400px] mix-blend-lighten overflow-hidden rounded-full ">
             <Image
               src={hero}
               alt="heroImage"

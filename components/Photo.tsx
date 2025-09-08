@@ -6,37 +6,37 @@ import Image from "next/image";
 import hero from "@/images/hero.jpg";
 
 const EnhancedPhoto = () => {
-  const circleColors = ["#00ff99"];
-
-  const circleVariants = {
-    initial: {
-      strokeDasharray: "24 10 0 0",
-      rotate: 0,
-      opacity: 0,
-    },
-    animate: (index: number) => ({
-      strokeDasharray: ["15 120 25 25", "16 25 92 72", "4 250 22 22"],
-      rotate: [120, 360],
-      opacity: 1,
-      transition: {
-        strokeDasharray: {
-          duration: 20,
-          repeat: Infinity,
-          repeatType: "reverse",
-        },
-        rotate: {
-          duration: 20,
-          repeat: Infinity,
-          repeatType: "reverse",
-        },
-        opacity: {
-          duration: 0.4,
-          delay: 2 + index * 0.4,
-          ease: "easeIn",
-        },
+  const circleColors = ["#00ff99"]; 
+  
+const circleVariants = {
+  initial: {
+    strokeDasharray: "24 10 0 0",
+    rotate: 0,
+    opacity: 0,
+  },
+  animate: (index) => ({
+    strokeDasharray: ["15 120 25 25", "16 25 92 72", "4 250 22 22"],
+    rotate: [120, 360],
+    opacity: 1,
+    transition: {
+      strokeDasharray: {
+        duration: 20,
+        repeat: Infinity,
+        repeatType: "reverse",
       },
-    }),
-  };
+      rotate: {
+        duration: 20,
+        repeat: Infinity,
+        repeatType: "reverse",
+      },
+      opacity: {
+        duration: 0.4,
+        delay: 2 + index * 0.4,
+        ease: "easeIn",
+      },
+    },
+  }),
+};
 
   return (
     <div className="w-full h-full relative flex items-center justify-center">

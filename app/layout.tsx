@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import StairTransition from "@/components/StairTransition";
 import PageTransition from "@/components/PageTransition";
+import { Toaster } from 'react-hot-toast';
 
 
 export const metadata: Metadata = {
@@ -23,7 +24,10 @@ export default function RootLayout({
         <StairTransition/>
         <PageTransition>
           {children}
-        </PageTransition>
+        </PageTransition> 
+        <Toaster position="bottom-right" toastOptions={{
+          style: {background: "#000", color: "#fff"}
+        }}/>
       </body>
     </html>
   );

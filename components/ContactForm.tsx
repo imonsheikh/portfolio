@@ -1,0 +1,216 @@
+"use client";
+import React, { useState } from "react";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import { Button } from "./ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
+import SuccessMsg from "./SuccessMsg";
+import toast from "react-hot-toast";
+
+const ContactForm = () => {
+  const [status, setStatus] = useState("");
+  const [success, setSuccess] = useState(false);
+  const [isLoading, setLoading] = useState(false);
+  const [formData, setFormData] = useState({
+    Name: "",
+    Email: "",
+    Phone: "",
+    Address: "",
+    Message: "",
+    Service: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    e.preventDefault();
+    const { name, value } = e.target;
+
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSelectChange = (value: string) => {
+    setFormData((prevData) => ({
+      ...prevData,
+      Service: value,
+    }));
+  };
+
+  const handleSubmit = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault(); 
+
+    console.log(formData);
+    
+
+    if (!formData.Name.trim() || !formData.Email.trim()) {
+      toast.error("Please Input your name and email to continue");
+      return;
+    }
+    const form = new FormData();
+    const currentDateTime = new Date().toLocaleString();
+    form.append("Name", formData.Name);
+    form.append("Email", formData.Email);
+    form.append("Phone", formData.Phone);
+    form.append("Address", formData.Address);
+    form.append("Message", formData.Message);
+    form.append("Service", formData.Service);
+    form.append("DateTime", currentDateTime);
+
+    try {
+      setLoading(true);
+      const response = await fetch("https://getform.io/f/akkpepna", {
+        method: "POST",
+        body: form,
+      });
+
+      if (response.ok) {
+        setSuccess(true);
+        setStatus("Success! Your message has been sent.");
+        setFormData({
+          Name: "",
+          Email: "",
+          Phone: "",
+          Address: "",
+          Message: "",
+          Service: "",
+        });
+      } else {
+        setStatus("Error! Unable to send your message.");
+        toast.error("Error! Unable to send your message.");
+      }
+    } catch (error) {
+      console.error("Error!", error);
+      setStatus("Error! Something went wrong.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <form className="space-y-4">
+      <h3 className="text-2xl md:text-4xl text-lightSky">
+        Let&apos;s work together
+      </h3>
+      <p className="text-white/60 text-sm md:text-base">
+        Have a project idea or looking for a MERN developer to join your team?
+        Feel free to reach out! I’m always excited to collaborate on building
+        modern web applications, solving problems, and turning ideas into
+        reality.
+      </p>
+      <>
+        {success ? (
+          <SuccessMsg status={status} />
+        ) : (
+          <>
+            <div className="flex flex-col gap-4">
+              <div className="flex flex-col md:flex-row gap-4 items-center">
+                <Input
+                  type="text"
+                  id="Name"
+                  name="Name"
+                  required
+                  placeholder="Your name"
+                  value={formData.Name}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                  className="disabled:placeholder:text-white/10 disabled:bg-white/20"
+                />
+                <Input
+                  type="email"
+                  id="Email"
+                  name="Email"
+                  required
+                  placeholder="Email address"
+                  value={formData.Email}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                  className="disabled:placeholder:text-white/10 disabled:bg-white/20"
+                />
+              </div>
+
+              <div className="flex flex-col md:flex-row gap-4 items-center">
+                <Input
+                  type="text"
+                  id="Phone"
+                  name="Phone"
+                  required
+                  placeholder="Phone number"
+                  value={formData.Phone}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                  className="disabled:placeholder:text-white/10 disabled:bg-white/20"
+                />
+                <Input
+                  type="text"
+                  id="Address"
+                  name="Address"
+                  required
+                  placeholder="Address"
+                  value={formData.Address}
+                  onChange={handleChange}
+                  disabled={isLoading}
+                  className="disabled:placeholder:text-white/10 disabled:bg-white/20"
+                />
+              </div>
+
+              <Textarea
+                name="Message"
+                placeholder="Text here"
+                value={formData.Message}
+                onChange={handleChange}
+                rows={5}
+                disabled={isLoading}
+                className="disabled:placeholder:text-white/10 disabled:bg-white/20"
+              />
+              <Select onValueChange={handleSelectChange} disabled={isLoading}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select a service" />
+                </SelectTrigger>
+                <SelectContent className="bg-bodyColor text-white border-white/20">
+                  <SelectGroup>
+                    <SelectLabel>Select a service</SelectLabel>
+                    <SelectItem value="web-development">
+                      Web Development
+                    </SelectItem>
+                    <SelectItem value="e-commerce">
+                      E-commerce Development
+                    </SelectItem>
+                    <SelectItem value="mern-stack">
+                      MERN Stack Application
+                    </SelectItem>
+                    <SelectItem value="frontend">
+                      Frontend Development (React / Next.js)
+                    </SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+            <Button
+              disabled={isLoading}
+              onClick={handleSubmit}
+              type="submit"
+              className="w-full py-4 bg-lightSky/5 text-white/80 border border-lightSky/20 hover:bg-lightSky/10 hover:border-lightSky hover:text-hoverColor hoverEffect"
+            >
+              {isLoading ? "Submitting message..." : "Send Message"}
+            </Button>
+          </>
+        )}
+      </>
+    </form>
+  );
+};
+
+export default ContactForm;

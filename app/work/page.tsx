@@ -25,7 +25,7 @@ import Container from "@/components/Container";
 import { projects } from "@/constants";
 
 
-export default function ProjectSlider() {
+export default function WorkPage() {
   const [currentIndex, setCurrentIndex] = React.useState(0);
 
   const handleSlideChange = (index: number) => {
@@ -88,7 +88,7 @@ export default function ProjectSlider() {
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <Link href={project.liveUrl}>
+                                  <Link href={project.liveUrl} target="_black">
                                     <Button
                                       variant="outline"
                                       size="icon"
@@ -109,7 +109,7 @@ export default function ProjectSlider() {
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <Link href={project.githubUrl}>
+                                  <Link href={project.githubUrl} target="_black">
                                     <Button
                                       variant="outline"
                                       size="icon"

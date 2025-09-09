@@ -35,6 +35,7 @@ const SocialLinks = () => {
             <TooltipTrigger asChild>
               <Link
                 href={item.link}
+                target="_black"
                 className="text-lightSky/80 border border-lightSky/30 p-2.5 rounded-full hover:bg-lightSky/40 hover:text-lightSky hoverEffect"
               >
                 {item.icon}
